@@ -1,7 +1,7 @@
 package com.example.student.movieapp.Network;
 
 /**
- * Created by gordonpassy on 21/08/2017.
+ *
  */
 
 public class APIUtils {

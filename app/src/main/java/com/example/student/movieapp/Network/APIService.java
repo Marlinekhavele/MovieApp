@@ -5,7 +5,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 /**
- * Created by gordonpassy on 21/08/2017.
+ *
  */
 
 public interface APIService {
