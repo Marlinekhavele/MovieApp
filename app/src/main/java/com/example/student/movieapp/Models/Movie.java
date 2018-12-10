@@ -1,3 +1,4 @@
+
 package com.example.student.movieapp.Models;
 
 import com.google.gson.annotations.Expose;
