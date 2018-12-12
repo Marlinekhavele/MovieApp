@@ -15,6 +15,9 @@ import com.example.student.movieapp.instagram.InstagramListener;
 import com.example.student.movieapp.twitter.TwitterHelper;
 import com.example.student.movieapp.twitter.TwitterListener;
 import java.util.Locale;
+
+import io.fabric.sdk.android.Fabric;
+
 public class FacebookActivity extends AppCompatActivity
         implements FacebookListener, TwitterListener, GoogleListener, InstagramListener,
         View.OnClickListener {
@@ -28,7 +31,7 @@ public class FacebookActivity extends AppCompatActivity
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
         initialize();
     }
 
