@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MovieApp</string>
-    <string name="facebook_app_id">209088773313492</string>
-    <string name="fb_login_protocol_scheme">fb209088773313492</string>
+    <string name="facebook_app_id">364643004302708</string>
+    <string name="fb_login_protocol_scheme">fb364643004302708</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
