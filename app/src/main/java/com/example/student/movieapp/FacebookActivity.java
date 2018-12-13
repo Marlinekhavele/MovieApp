@@ -46,6 +46,12 @@ public class FacebookActivity  extends AppCompatActivity{
             public void onSuccess(LoginResult loginResult) {
                 //Load User Data
                 loadUserData(loginResult);
+
+                Log.d("success here" , loginResult.toString());
+
+                //Open Movie Activity
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
 
             @Override
@@ -56,6 +62,7 @@ public class FacebookActivity  extends AppCompatActivity{
             @Override
             public void onError(FacebookException e) {
                 //Handle Error Here
+                Log.d("Error here" , e.toString());
             }
         });
     }
