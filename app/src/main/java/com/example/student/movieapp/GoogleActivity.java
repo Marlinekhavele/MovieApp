@@ -1,6 +1,8 @@
 package com.example.student.movieapp;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,8 +19,10 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.Objects;
 
-public class GoogleActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+
+public class GoogleActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = "Log";
     private static final int RC_SIGN_IN = 1;
@@ -41,7 +45,8 @@ public class GoogleActivity extends AppCompatActivity implements GoogleApiClient
         // Build a GoogleApiClient with access to the Google Sign-In API and the
         // options specified by gso.
         mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .enableAutoManage(this, 1, this)
+                //.enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
@@ -59,6 +64,7 @@ public class GoogleActivity extends AppCompatActivity implements GoogleApiClient
     }
 
     private void signIn() {
+        Log.e(TAG, "Initiate Sign Sign in with google");
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -69,13 +75,18 @@ public class GoogleActivity extends AppCompatActivity implements GoogleApiClient
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
+            Log.e(TAG, "requestCode OKAY!!!");
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            Log.e(TAG, "Status : " + result.isSuccess() + "\nSUCCESSFUL : " +result.isSuccess());
             handleSignInResult(result);
         }
     }
 
     private void handleSignInResult(GoogleSignInResult result) {
-        Log.d(TAG, "handleSignInResult:" + result.isSuccess());
+
+        Log.d(TAG, "handleSignInResult:" + result.isSuccess()
+                    + "/n STATUS: " + result.getStatus() + "/nEMAIL: " );
+
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
@@ -94,6 +105,16 @@ public class GoogleActivity extends AppCompatActivity implements GoogleApiClient
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
 
     }
 }
